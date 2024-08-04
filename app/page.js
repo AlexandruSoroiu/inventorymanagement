@@ -63,7 +63,7 @@ export default function Home() {
   return (
   <Box
     width="100vw"
-    height= "100vh"
+    height="100vh"
     display="flex"
     flexDirection="column"
     justifyContent="center"
@@ -72,22 +72,22 @@ export default function Home() {
   >
     <Modal open={open} onClose={handleClose}>
       <Box 
-        position="aboslute" 
+        position="absolute" 
         top="50%" 
         left="50%" 
-        width={400} 
+        width={400}
         bgcolor="white" 
         border="2px solid #000" 
         boxShadow={24} 
         p={4} 
-        display= "flex" 
+        display="flex" 
         flexDirection="column" 
         gap={3} 
         sx={{
-          transform: 'translate(-50%, -50%',
+          transform: 'translate(-50%, -50%)',
         }}
       >
-        <Typography variant="h6">Add item</Typography>
+        <Typography variant="h6">Add Item</Typography>
         <Stack width="100%" direction="row" spacing={2}>
           <TextField
             variant="outlined"
@@ -96,7 +96,8 @@ export default function Home() {
             onChange={(e) => {
               setItemName(e.target.value)
             }}
-          />
+          >
+          </TextField>
           <Button 
             variant="outlined"
             onClick={() => {
@@ -111,7 +112,7 @@ export default function Home() {
       </Box>
     </Modal>
     <Button
-      variant="containted"
+      variant="contained"
       onClick={() => {
         handleOpen()
     }}
@@ -143,7 +144,7 @@ export default function Home() {
           display="flex"
           alignItems="center"
           justifyContent="space-between"
-          bgColor="#f0f0f0"
+          bgcolor="#f0f0f0"
           padding={5}
         >
           <Typography
@@ -160,6 +161,15 @@ export default function Home() {
           >
             {quantity}
           </Typography>
+          <Stack direction="row" spacing={2}>
+          <Button 
+            variant="contained"
+            onClick={() => {
+              addItem(name)
+          }}
+          >
+            Add
+          </Button>
           <Button 
             variant="contained"
             onClick={() => {
@@ -168,6 +178,7 @@ export default function Home() {
           >
             Remove
           </Button>
+          </Stack>
         </Box>
       ))}
     </Stack>
