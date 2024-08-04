@@ -10,6 +10,22 @@ export default function Home() {
   const [open, setOpen] = useState(false)
   const [itemName, setItemName] = useState('')
 
+  const [queryText, setQueryText] = useState('');
+ 
+  const searchFilter = (array) => {
+    return array.filter(
+      (el) => el.name.startsWith(queryText)
+    )
+  }
+
+  const handleChange = (e) => {
+	  setQueryText(e.target.value)
+  }
+
+  const filtered = searchFilter(inventory)
+
+
+
   const updateInventory = async () => {
     const snapshot = query(collection(firestore, 'inventory'))
     const docs = await getDocs(snapshot)
@@ -111,6 +127,7 @@ export default function Home() {
         </Stack>
       </Box>
     </Modal>
+    <Typography variant="h1" fontWeight="bold" color="#ADD8E6">Pantry App</Typography>
     <Button
       variant="contained"
       onClick={() => {
@@ -119,6 +136,14 @@ export default function Home() {
     >
       Add New Item
     </Button>
+    <TextField
+      variant="outlined"
+      placeholder="Search..."
+      alignItems="center"
+      justifyContent="center"
+      display="flex"
+      onChange={handleChange}
+    />
     <Box border="1px solid #333">
       <Box
         width="800px"
@@ -136,7 +161,7 @@ export default function Home() {
       height="300px"
       spacing={2}
       overflow="auto">
-      {inventory.map(({name, quantity}) => (
+      {filtered.map(({name, quantity}) => (
         <Box
           key={name}
           width="100%"
